@@ -1,0 +1,32 @@
+
+Add this TXT record to the stromail.com DNS zone.
+
+jul2020._domainkey    IN   TXT   v=DKIM1;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsXOElvGl1QiWqViceBZnkIhBz0JhuB6gK1OfUl7iR0jGR4249WMVtKcZYBCjGcRgdpZxxtl+UoMZ2Hjr12pr5bZAiwvfRChCK8RESsT5jW50RKOhPFmBf55cW6rxh8KWxnmYa1QjsVI2AU96yaQ20gXCPFwwARZd6yoAyhob5mlDHjzErrqostlwHwpXa31fQLSIcnsLmJW+Tgb7ZI1P09RTlDAopfFDmYPZ4h2/6SnleK8xgwDnTu/cQ2gfxPeyM6pMhsAZD+01tZ4n9apXykc1lkUD3AV4P5FMJsTKRwBDoAt/mrjZYUoPMXofE4QO9a7/ypeNPc/kvubivRT4fwIDAQAB
+
+
+BIND zone file formatted:
+
+jul2020._domainkey    IN   TXT (
+	"v=DKIM1;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsXOElvGl1QiWqViceBZnkIhBz0JhuB6gK1OfUl7iR0jGR4249WMVtKcZ"
+	"YBCjGcRgdpZxxtl+UoMZ2Hjr12pr5bZAiwvfRChCK8RESsT5jW50RKOhPFmBf55cW6rxh8KWxnmYa1QjsVI2AU96yaQ20gXCPFwwARZd6yoAyh"
+	"ob5mlDHjzErrqostlwHwpXa31fQLSIcnsLmJW+Tgb7ZI1P09RTlDAopfFDmYPZ4h2/6SnleK8xgwDnTu/cQ2gfxPeyM6pMhsAZD+01tZ4n9apX"
+	"ykc1lkUD3AV4P5FMJsTKRwBDoAt/mrjZYUoPMXofE4QO9a7/ypeNPc/kvubivRT4fwIDAQAB"
+        )
+
+Tell the world that the ONLY mail servers that send mail from this domain are DKIM signed and/or bear our MX and A records.
+
+With SPF:
+
+        SPF "v=spf1 mx a -all"
+        TXT "v=spf1 mx a -all"
+
+With DMARC:
+
+_dmarc  TXT "v=DMARC1; p=reject; adkim=s; aspf=r; rua=mailto:dmarc-feedback@stromail.com; ruf=mailto:dmarc-feedback@stromail.com; pct=100"
+
+For more information about DKIM and SPF policy,
+the documentation within each plugin contains a longer discussion and links to more detailed information:
+
+   haraka -h dkim_sign
+   haraka -h spf
+

@@ -1,0 +1,6 @@
+config/auth_flat_file.ini
+config/dkim.private.key
+config/tls_cert.pem
+config/tls_key.pem
+/config/tls
+config/dkim/stromail.com/private
